@@ -24,22 +24,41 @@
 /*
  Returning a Promise: Promise Chaining
 */
-let randomInt;
-const promise = new Promise( (resolve, reject) => {
-    setTimeout(() => {
-        randomInt = Math.floor(Math.random() * 10);
-        resolve(randomInt);
-    }, 500)
-});
+// let randomInt;
+// const promise = new Promise( (resolve, reject) => {
+//     setTimeout(() => {
+//         randomInt = Math.floor(Math.random() * 10);
+//         resolve(randomInt);
+//     }, 500)
+// });
 
-promise.then( data => {
-    console.log(`Random int passed to resolve: ${data}`);
-    return new Promise((resolve, reject) => {
-        setTimeout( () => {
-            resolve(Math.floor(Math.random() * 10));
-        }, 3000)
-    });
+// promise.then( data => {
+//     console.log(`Random int passed to resolve: ${data}`);
+//     return new Promise((resolve, reject) => {
+//         setTimeout( () => {
+//             resolve(Math.floor(Math.random() * 10));
+//         }, 3000)
+//     });
+// })
+// .then( data => {
+//     console.log(`Second random int passed to resolve: ${data}`);
+// });
+
+
+/*
+    Promise Chaining: Returning Data
+*/
+
+const promise = new Promise((resolve, reject) => {
+    resolve(3);
+})
+
+promise.then(data => {
+    return data * 2;
 })
 .then( data => {
-    console.log(`Second random int passed to resolve: ${data}`);
-});
+    return data + 10;
+})
+.then( data => {
+    console.log(data);
+})
